@@ -16,6 +16,8 @@ return new class () extends Migration {
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('unit');
+            $table->string('unit_abbreviation');
             $table->timestamps();
         });
     }

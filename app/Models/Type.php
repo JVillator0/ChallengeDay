@@ -10,6 +10,8 @@ class Type extends Model
         'id',
         'name',
         'description',
+        'unit',
+        'unit_abbreviation',
     ];
 
     public function categoryTypes()

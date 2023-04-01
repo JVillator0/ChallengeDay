@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->id();
             $table->decimal('amount', 8, 2);
             $table->foreignId('category_type_id')->constrained();
-            $table->foreignId('emission_id')->constrained();
+            $table->foreignId('emission_type_id')->constrained();
             $table->foreignId('place_id')->constrained();
             $table->timestamps();
         });

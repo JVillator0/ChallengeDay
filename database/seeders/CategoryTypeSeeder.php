@@ -47,16 +47,22 @@ class CategoryTypeSeeder extends Seeder
         Type::create([
             'name' => 'Combustible',
             'description' => 'Combustible',
+            'unit' => 'Galones',
+            'unit_abbreviation' => 'gal',
         ]);
 
         Type::create([
             'name' => 'Electricidad',
             'description' => 'Electricidad',
+            'unit' => 'Kilowatts',
+            'unit_abbreviation' => 'kW',
         ]);
 
         Type::create([
             'name' => 'Otros productos derivados del petróleo',
             'description' => 'Otros productos derivados del petróleo',
+            'unit' => 'Litros',
+            'unit_abbreviation' => 'l',
         ]);
 
         // Fuel
