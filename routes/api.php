@@ -24,3 +24,10 @@ Route::apiResource('places', PlaceController::class);
 Route::apiResource('deparments', DeparmentController::class);
 Route::apiResource('trips', TripController::class);
 Route::apiResource('consumptions', ConsumptionController::class);
+
+Route::prefix('/metrics')->group(function () {
+    Route::get('/anual-average-fuel-consumption-by-category', [
+        CategoryTypeController::class,
+        'anualAverageFuelConsumptionByCategory'
+    ]);
+});

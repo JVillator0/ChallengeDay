@@ -64,4 +64,33 @@ class CategoryTypeController extends Controller
             'Categoria de consumo eliminada',
         );
     }
+
+    // metrics
+    public function anualAverageFuelConsumptionByCategory()
+    {
+        $result = CategoryType::query()
+            ->whereHas('consumptions')
+            ->whereHas('type', function ($query) {
+                $query->where('name', 'Combustible');
+            })
+            ->with(['consumptions' => function ($query) {
+                $query->selectRaw('category_type_id, AVG(amount) as average_consumption')
+                    ->groupBy('category_type_id');
+            }])
+            ->with(['type:id,unit_abbreviation'])
+            ->get(['id', 'category_id', 'type_id']);
+
+        return $this->success(
+            'Consumo promedio de combustible por categoría',
+            $result->map(function ($item) {
+                return [
+                    'category' => $item->category->name,
+                    'average' => round($item->consumptions[0]->average_consumption, 2),
+                    'unit' => $item->type?->unit_abbreviation,
+                ];
+            })
+            ->sortByDesc('average_consumption')
+            ->values()
+        );
+    }
 }

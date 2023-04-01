@@ -946,6 +946,30 @@
 			]
 		},
 		{
+			"name": "Metrics",
+			"item": [
+				{
+					"name": "Get all  Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/anual-average-fuel-consumption-by-category",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"anual-average-fuel-consumption-by-category"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Status",
 			"request": {
 				"method": "GET",
