@@ -1,0 +1,7 @@
+# Git ignore for laravel projects
+.env
+vendor
+node_modules
+npm-debug.log
+yarn-error.log
+public/hot
