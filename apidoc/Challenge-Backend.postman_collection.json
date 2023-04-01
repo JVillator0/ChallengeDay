@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Category",
+			"name": "Categorys",
 			"item": [
 				{
 					"name": "Get all",
@@ -123,7 +123,7 @@
 			]
 		},
 		{
-			"name": "Type",
+			"name": "Types",
 			"item": [
 				{
 					"name": "Get all",
@@ -155,7 +155,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Type Name\",\n    \"description\": \"Type Description\"\n}"
+							"raw": "{\n    \"name\": \"Type Name\",\n    \"description\": \"Type Description\",\n    \"unit\": \"Galones\",\n    \"unit_abbreviation\": \"Gal\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/types",
@@ -201,7 +201,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"New Type Name\",\n    \"description\": \"New Type Description\"\n}"
+							"raw": "{\n    \"name\": \"New Type Name\",\n    \"description\": \"New Type Description\",\n    \"unit\": \"Galones\",\n    \"unit_abbreviation\": \"Gal\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/types/1",
@@ -239,7 +239,7 @@
 			]
 		},
 		{
-			"name": "Category Type",
+			"name": "Category Types",
 			"item": [
 				{
 					"name": "Get all",
@@ -366,7 +366,7 @@
 			]
 		},
 		{
-			"name": "Emission Type",
+			"name": "Emission Types",
 			"item": [
 				{
 					"name": "Get all",
@@ -589,6 +589,354 @@
 							"path": [
 								"api",
 								"places",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consuptions",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/consumptions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"consumptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 10.5,\n    \"category_type_id\": 1,\n    \"emission_type_id\": 2,\n    \"place_id\": 3\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/consumptions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"consumptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/consumptions/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"consumptions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 12.3,\n    \"category_type_id\": 4,\n    \"emission_type_id\": 5,\n    \"place_id\": 6\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/consumptions/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"consumptions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/consumptions/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"consumptions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deparments",
+			"item": [
+				{
+					"name": "Get all ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/deparments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deparments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Departamento de Ventas\",\n    \"description\": \"Encargado de la venta de productos y servicios\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/deparments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deparments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/deparments/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deparments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Departamento de Ventas\",\n    \"description\": \"Encargado de la venta de productos y servicios\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/deparments/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deparments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/deparments/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deparments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trips",
+			"item": [
+				{
+					"name": "Get all ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/trips",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deparment_id\": 1,\n    \"emission_type_id\": 2,\n    \"trip_date\": \"2023-04-01\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/trips",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/trips/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trips",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deparment_id\": 1,\n    \"emission_type_id\": 2,\n    \"trip_date\": \"2023-04-01\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/trips/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trips",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/trips/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trips",
 								"1"
 							]
 						}

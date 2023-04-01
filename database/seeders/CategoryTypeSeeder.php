@@ -59,8 +59,8 @@ class CategoryTypeSeeder extends Seeder
         ]);
 
         Type::create([
-            'name' => 'Otros productos derivados del petróleo',
-            'description' => 'Otros productos derivados del petróleo',
+            'name' => 'Aceite',
+            'description' => 'Aceite para motores',
             'unit' => 'Litros',
             'unit_abbreviation' => 'l',
         ]);
@@ -100,7 +100,7 @@ class CategoryTypeSeeder extends Seeder
         ]);
 
         // Other petroleum products
-        $typeId = Type::where('name', 'Otros productos derivados del petróleo')->value('id');
+        $typeId = Type::where('name', 'Aceite')->value('id');
         CategoryType::create([
             'category_id' => Category::where('name', 'Administrativo')->value('id'),
             'type_id' => $typeId,

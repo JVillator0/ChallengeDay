@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             CategoryTypeSeeder::class,
             EmissionTypeSeeder::class,
             PlaceSeeder::class,
+            DeparmentSeeder::class,
+            TripSeeder::class,
         ]);
     }
 }
