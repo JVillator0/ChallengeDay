@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryTypeController;
+use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\EmissionTypeController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\TypeController;
@@ -18,3 +19,4 @@ Route::apiResource('types', TypeController::class);
 Route::apiResource('category-types', CategoryTypeController::class);
 Route::apiResource('emissions-types', EmissionTypeController::class);
 Route::apiResource('places', PlaceController::class);
+Route::apiResource('consumptions', ConsumptionController::class);
