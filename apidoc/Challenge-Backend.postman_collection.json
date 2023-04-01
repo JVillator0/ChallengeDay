@@ -239,7 +239,7 @@
 			]
 		},
 		{
-			"name": "CategoryType",
+			"name": "Category Type",
 			"item": [
 				{
 					"name": "Get all",
@@ -357,6 +357,238 @@
 							"path": [
 								"api",
 								"category-types",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Emission Type",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/emissions-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"emissions-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Emission Type Name\",\n    \"description\": \"Emission Type Description\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/emissions-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"emissions-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/emissions-types/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"emissions-types",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Emission Type Name\",\n    \"description\": \"New Emission Type Description\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/emissions-types/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"emissions-types",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/emissions-types/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"emissions-types",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Places",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/places",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Place Name\",\n    \"address\": \"Place Address\",\n    \"description\": \"Place Description\",\n    \"location_url\": \"https://www.google.com/maps/place/Latitude,Longitude\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/places",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/places/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"places",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Place Name\",\n    \"address\": \"New Place Address\",\n    \"description\": \"New Place Description\",\n    \"location_url\": \"https://www.google.com/maps/place/NewLatitude,NewLongitude\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/places/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"places",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/places/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"places",
 								"1"
 							]
 						}
