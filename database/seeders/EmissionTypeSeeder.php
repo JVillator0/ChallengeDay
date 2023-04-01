@@ -29,5 +29,10 @@ class EmissionTypeSeeder extends Seeder
             'name' => 'N2O',
             'description' => 'Nitrous oxide',
         ]);
+
+        EmissionType::create([
+            'name' => 'HFC',
+            'description' => 'Hidrofluorocarbonos',
+        ]);
     }
 }

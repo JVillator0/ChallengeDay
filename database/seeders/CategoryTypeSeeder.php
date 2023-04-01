@@ -103,6 +103,11 @@ class CategoryTypeSeeder extends Seeder
             'type_id' => $typeId,
         ]);
 
+        CategoryType::create([
+            'category_id' => $distribution,
+            'type_id' => $typeId,
+        ]);
+
         // Electricity
         $typeId = Type::where('name', 'Electricidad')->value('id');
         CategoryType::create([
@@ -120,6 +125,11 @@ class CategoryTypeSeeder extends Seeder
             'type_id' => $typeId,
         ]);
 
+        CategoryType::create([
+            'category_id' => $operation,
+            'type_id' => $typeId,
+        ]);
+
         $typeId = Type::where('name', 'Aceite')->value('id');
         CategoryType::create([
             'category_id' => $administration,
@@ -133,6 +143,16 @@ class CategoryTypeSeeder extends Seeder
 
         CategoryType::create([
             'category_id' => $logistics,
+            'type_id' => $typeId,
+        ]);
+
+        CategoryType::create([
+            'category_id' => $operation,
+            'type_id' => $typeId,
+        ]);
+
+        CategoryType::create([
+            'category_id' => $distribution,
             'type_id' => $typeId,
         ]);
 

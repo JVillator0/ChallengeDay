@@ -23,8 +23,8 @@ class PlaceSeeder extends Seeder
         ]);
 
         Place::create([
-            'name' => 'Almacen de agua mineral',
-            'description' => 'Almacen de agua mineral',
+            'name' => 'Almacen',
+            'description' => 'Almacen',
             'address' => 'avenida 1, calle 2, sector 3, ciudad 4, estado 5, país 6',
             'location_url' => 'http://www.google.com',
         ]);

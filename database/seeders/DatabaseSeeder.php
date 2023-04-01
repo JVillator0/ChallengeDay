@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PlaceSeeder::class,
             DeparmentSeeder::class,
             TripSeeder::class,
+            ConsumptionSeeder::class,
         ]);
     }
 }

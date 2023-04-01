@@ -21,4 +21,9 @@ class CategoryType extends Model
     {
         return $this->belongsTo(Type::class);
     }
+
+    public function consumptions()
+    {
+        return $this->hasMany(Consumption::class);
+    }
 }
