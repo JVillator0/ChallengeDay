@@ -65,7 +65,10 @@ class CategoryTypeController extends Controller
         );
     }
 
-    // metrics
+    // -----------------------------------------------------------------------
+    // Metrics
+    // -----------------------------------------------------------------------
+
     public function anualAverageFuelConsumptionByCategory()
     {
         $result = CategoryType::query()
@@ -80,17 +83,28 @@ class CategoryTypeController extends Controller
             ->with(['type:id,unit_abbreviation'])
             ->get(['id', 'category_id', 'type_id']);
 
+        $result = $result->map(function ($item) {
+            return [
+                'category' => $item->category->name,
+                'average' => round($item->consumptions[0]->average_consumption, 2),
+                'unit' => $item->type?->unit_abbreviation,
+            ];
+        })
+        ->sortByDesc('average')
+        ->values();
+
+        $total = $result->sum('average');
+
         return $this->success(
             'Consumo promedio de combustible por categoría',
-            $result->map(function ($item) {
-                return [
-                    'category' => $item->category->name,
-                    'average' => round($item->consumptions[0]->average_consumption, 2),
-                    'unit' => $item->type?->unit_abbreviation,
-                ];
-            })
-            ->sortByDesc('average_consumption')
-            ->values()
+            $result->map(
+                fn ($item) => [
+                    'category' => $item['category'],
+                    'average' => $item['average'],
+                    'unit' => $item['unit'],
+                    'percentage' => ($total > 0 ? round($item['average'] / $total * 100, 2) . '%' : '0%'),
+                ]
+            )
         );
     }
 }

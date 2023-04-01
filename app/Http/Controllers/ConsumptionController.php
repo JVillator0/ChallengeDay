@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Consumption\StoreRequest;
 use App\Http\Requests\Consumption\UpdateRequest;
 use App\Http\Resources\ConsumptionResource;
+use App\Models\Category;
+use App\Models\CategoryType;
 use App\Models\Consumption;
 use App\Models\Type;
 
@@ -57,11 +59,14 @@ class ConsumptionController extends Controller
         );
     }
 
+    // -----------------------------------------------------------------------
+    // Metrics
+    // -----------------------------------------------------------------------
+
     public function monthlyAverageFuelConsumption()
     {
         $results = Consumption::query()
             ->whereHas('categoryType.type', fn ($query) => $query->where('name', 'Combustible'))
-            ->whereYear('created_at', 2022)
             ->selectRaw('MONTH(created_at) as month, AVG(amount) as average')
             ->groupBy('month')
             ->orderBy('month')
@@ -79,6 +84,42 @@ class ConsumptionController extends Controller
                     'unit' => $typeAbbr,
                 ]
             )
+        );
+    }
+
+    public function mostImpactSegment()
+    {
+        $result = Category::query()
+            ->with(['categoryTypes.consumptions' => function ($query) {
+                $query->selectRaw('category_type_id, AVG(amount) as average_consumption')
+                    ->groupBy('category_type_id');
+            }])
+            ->get(['id', 'name']);
+
+        $result = $result->map(function ($item) {
+            $totalConsumption = $item->categoryTypes->sum(function ($categoryType) {
+                return $categoryType->consumptions[0]->average_consumption ?? 0;
+            });
+
+            return [
+                'category' => $item->name,
+                'average' => round($totalConsumption, 2),
+            ];
+        })
+        ->sortByDesc('average')
+        ->values();
+
+        $total = $result->sum('average');
+
+        return $this->success(
+            'Segmento con mayor impacto',
+            $result->map(function ($item) use ($total) {
+                return [
+                    'category' => $item['category'],
+                    'average' => $item['average'],
+                    'percentage' => ($total > 0 ? round($item['average'] / $total * 100, 2) . '%' : '0%'),
+                ];
+            })
         );
     }
 }
