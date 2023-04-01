@@ -30,4 +30,9 @@ Route::prefix('/metrics')->group(function () {
         CategoryTypeController::class,
         'anualAverageFuelConsumptionByCategory'
     ]);
+
+    Route::get('/monthly-average-fuel-consumption', [
+        ConsumptionController::class,
+        'monthlyAverageFuelConsumption'
+    ]);
 });
