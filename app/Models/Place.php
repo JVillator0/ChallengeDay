@@ -12,4 +12,9 @@ class Place extends Model
         'address',
         'location_url',
     ];
+
+    public function consumptions()
+    {
+        return $this->hasMany(Consumption::class);
+    }
 }

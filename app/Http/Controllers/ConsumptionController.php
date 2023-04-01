@@ -8,7 +8,9 @@ use App\Http\Resources\ConsumptionResource;
 use App\Models\Category;
 use App\Models\CategoryType;
 use App\Models\Consumption;
+use App\Models\Place;
 use App\Models\Type;
+use Illuminate\Http\Request;
 
 class ConsumptionController extends Controller
 {
@@ -113,13 +115,39 @@ class ConsumptionController extends Controller
 
         return $this->success(
             'Segmento con mayor impacto',
-            $result->map(function ($item) use ($total) {
-                return [
+            $result->map(
+                fn ($item) => [
                     'category' => $item['category'],
                     'average' => $item['average'],
                     'percentage' => ($total > 0 ? round($item['average'] / $total * 100, 2) . '%' : '0%'),
-                ];
-            })
+                ]
+            )
+        );
+    }
+
+    public function monthlyAverageElectricityConsumption(Request $request)
+    {
+        $result = Place::query()
+            ->when($request->has('place_id'), fn ($query) => $query->where('id', $request->place_id))
+            ->with(['consumptions' => function ($query) {
+                $query->selectRaw('place_id, MONTH(created_at) as month, AVG(amount) as average_consumption')
+                    ->whereHas('categoryType.type', fn ($query) => $query->where('name', 'Electricidad'))
+                    ->groupBy('place_id', 'month')
+                    ->orderBy('month');
+            }])
+            ->get(['id', 'name']);
+
+        $typeAbbr = Type::where('name', 'Electricidad')->value('unit_abbreviation');
+
+        return $this->success(
+            'Consumo promedio mensual de electricidad',
+            $result->map(
+                fn ($item) => [
+                    'place' => $item->name,
+                    'average' => round($item->consumptions->avg('average_consumption'), 2),
+                    'unit' => $typeAbbr,
+                ]
+            )
         );
     }
 }

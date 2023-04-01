@@ -36,9 +36,13 @@ Route::prefix('/metrics')->group(function () {
         'monthlyAverageFuelConsumption'
     ]);
 
-    // Calcular qué segmento es el que más impacta
     Route::get('/most-impact-segment', [
         ConsumptionController::class,
         'mostImpactSegment'
+    ]);
+
+    Route::get('/monthly-average-electricity-consumption', [
+        ConsumptionController::class,
+        'monthlyAverageElectricityConsumption'
     ]);
 });
