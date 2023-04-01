@@ -10,4 +10,9 @@ class Deparment extends Model
         'name',
         'description',
     ];
+
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
 }

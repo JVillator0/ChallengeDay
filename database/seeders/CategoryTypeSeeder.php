@@ -65,54 +65,96 @@ class CategoryTypeSeeder extends Seeder
             'unit_abbreviation' => 'l',
         ]);
 
+        Type::create([
+            'name' => 'Papel Bond',
+            'description' => 'Papel Bond',
+            'unit' => 'Unidades',
+            'unit_abbreviation' => 'u',
+        ]);
+
+        Type::create([
+            'name' => 'Refrigerante',
+            'description' => 'Refrigerante',
+            'unit' => 'Litros',
+            'unit_abbreviation' => 'l',
+        ]);
+
+
+        $administration = Category::where('name', 'Administrativo')->value('id');
+        $supplier =  Category::where('name', 'Indirecto de proveedor')->value('id');
+        $logistics = Category::where('name', 'Logística')->value('id');
+        $distribution = Category::where('name', 'Distribución')->value('id');
+        $operation = Category::where('name', 'Operación')->value('id');
+
         // Fuel
         $typeId = Type::where('name', 'Combustible')->value('id');
         CategoryType::create([
-            'category_id' => Category::where('name', 'Administrativo')->value('id'),
+            'category_id' => $administration,
             'type_id' => $typeId,
         ]);
 
         CategoryType::create([
-            'category_id' => Category::where('name', 'Indirecto de proveedor')->value('id'),
+            'category_id' => $supplier,
             'type_id' => $typeId,
         ]);
 
         CategoryType::create([
-            'category_id' => Category::where('name', 'Logística')->value('id'),
+            'category_id' => $logistics,
             'type_id' => $typeId,
         ]);
 
         // Electricity
         $typeId = Type::where('name', 'Electricidad')->value('id');
         CategoryType::create([
-            'category_id' => Category::where('name', 'Administrativo')->value('id'),
+            'category_id' => $administration,
             'type_id' => $typeId,
         ]);
 
         CategoryType::create([
-            'category_id' => Category::where('name', 'Logística')->value('id'),
+            'category_id' => $supplier,
             'type_id' => $typeId,
         ]);
 
         CategoryType::create([
-            'category_id' => Category::where('name', 'Distribución')->value('id'),
+            'category_id' => $distribution,
             'type_id' => $typeId,
         ]);
 
-        // Other petroleum products
         $typeId = Type::where('name', 'Aceite')->value('id');
         CategoryType::create([
-            'category_id' => Category::where('name', 'Administrativo')->value('id'),
+            'category_id' => $administration,
             'type_id' => $typeId,
         ]);
 
         CategoryType::create([
-            'category_id' => Category::where('name', 'Logística')->value('id'),
+            'category_id' => $supplier,
             'type_id' => $typeId,
         ]);
 
         CategoryType::create([
-            'category_id' => Category::where('name', 'Operación')->value('id'),
+            'category_id' => $logistics,
+            'type_id' => $typeId,
+        ]);
+
+        $typeId = Type::where('name', 'Papel Bond')->value('id');
+        CategoryType::create([
+            'category_id' => $administration,
+            'type_id' => $typeId,
+        ]);
+
+        CategoryType::create([
+            'category_id' => $supplier,
+            'type_id' => $typeId,
+        ]);
+
+        CategoryType::create([
+            'category_id' => $operation,
+            'type_id' => $typeId,
+        ]);
+
+        $typeId = Type::where('name', 'Refrigerante')->value('id');
+        CategoryType::create([
+            'category_id' => $distribution,
             'type_id' => $typeId,
         ]);
     }
