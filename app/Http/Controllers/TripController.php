@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Trip\StoreRequest;
 use App\Http\Requests\Trip\UpdateRequest;
 use App\Http\Resources\TripResource;
+use App\Models\Deparment;
 use App\Models\Trip;
 use Illuminate\Http\Request;
 
@@ -53,6 +54,28 @@ class TripController extends Controller
         return $this->success(
             'Viaje eliminado correctamente',
             new TripResource($trip)
+        );
+    }
+
+    public function monthlyAverageTripsByDeparment()
+    {
+        $trips = Trip::selectRaw('MONTH(trips.trip_date) as month, deparments.name as deparment, COUNT(trips.id) as trips')
+            ->join('deparments', 'deparments.id', '=', 'trips.deparment_id')
+            ->groupBy('month', 'deparment')
+            ->get();
+
+        $trips = $trips->groupBy('deparment')->values();
+
+        $result = $trips->map(function ($item, $key) {
+            return [
+                'deparment' => $item[0]->deparment,
+                'trips' => $item->sum('trips') / $item->count()
+            ];
+        });
+
+        return $this->success(
+            'Viajes mensuales por departamento',
+            $result
         );
     }
 }
