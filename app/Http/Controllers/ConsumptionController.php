@@ -147,7 +147,7 @@ class ConsumptionController extends Controller
         );
     }
 
-    public function monthlyComparisonElectricityFuelConsumption(Request $request)
+    public function monthlyComparisonElectricityFuelConsumption()
     {
         $results = Consumption::query()
             ->whereHas('categoryType.type', fn ($query) => $query->where('name', 'Combustible'))
@@ -177,6 +177,46 @@ class ConsumptionController extends Controller
                 'fuel_percentage' => ($total > 0 ? round($fuel / $total * 100, 2) . '%' : '0%'),
                 'electricity_percentage' => ($total > 0 ? round($electricity / $total * 100, 2) . '%' : '0%'),
             ]
+        );
+    }
+
+    public function monthlyAverageProductsConsumptionByType(Request $request)
+    {
+        $result = Type::query()
+            ->when($request->has('type_ids'), fn ($query) => $query->whereIn('id', json_decode($request->type_ids)))
+            ->with(['categoryTypes.consumptions' => function ($query) {
+                $query->selectRaw('category_type_id, MONTH(created_at) as month, AVG(amount) as average_consumption')
+                    ->groupBy('category_type_id', 'month')
+                    ->orderBy('month');
+            }])
+            ->get(['id', 'name', 'unit_abbreviation']);
+
+        $result = $result->map(function ($item) {
+            $totalConsumption = $item->categoryTypes->avg(function ($categoryType) {
+                return $categoryType->consumptions->avg('average_consumption') ?? 0;
+            });
+
+            return [
+                'type' => $item->name,
+                'average' => round($totalConsumption, 2),
+                'unit_abbreviation' => $item->unit_abbreviation,
+            ];
+        })
+        ->sortByDesc('average')
+        ->values();
+
+        $total = $result->sum('average');
+
+        return $this->success(
+            'Consumo promedio mensual de productos por tipo',
+            $result->map(
+                fn ($item) => [
+                    'type' => $item['type'],
+                    'average' => $item['average'],
+                    'percentage' => ($total > 0 ? round($item['average'] / $total * 100, 2) . '%' : '0%'),
+                    'unit' => $item['unit_abbreviation'],
+                ]
+            )
         );
     }
 }

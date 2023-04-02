@@ -949,7 +949,7 @@
 			"name": "Metrics",
 			"item": [
 				{
-					"name": "Get all  Copy",
+					"name": "Anual avg fuel by category",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -962,6 +962,114 @@
 								"api",
 								"metrics",
 								"anual-average-fuel-consumption-by-category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly avg fuel consumption",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/monthly-average-fuel-consumption",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"monthly-average-fuel-consumption"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Most impact segment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/most-impact-segment",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"most-impact-segment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly avg electricity consumption",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/monthly-average-electricity-consumption?place_id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"monthly-average-electricity-consumption"
+							],
+							"query": [
+								{
+									"key": "place_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly Comparison Electricity Fuel Consumption",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/monthly-comparison-electricity-fuel-consumption",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"monthly-comparison-electricity-fuel-consumption"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly average products consumption by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/monthly-average-products-consumption-by-type",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"monthly-average-products-consumption-by-type"
+							],
+							"query": [
+								{
+									"key": "type_ids",
+									"value": "[1,2]",
+									"disabled": true
+								}
 							]
 						}
 					},

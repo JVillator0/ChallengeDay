@@ -50,4 +50,9 @@ Route::prefix('/metrics')->group(function () {
         ConsumptionController::class,
         'monthlyComparisonElectricityFuelConsumption'
     ]);
+
+    Route::get('/monthly-average-products-consumption-by-type', [
+        ConsumptionController::class,
+        'monthlyAverageProductsConsumptionByType'
+    ]);
 });
