@@ -273,4 +273,35 @@ class ConsumptionController extends Controller
             )
         );
     }
+
+    public function getMaxMinMonthsUsedFuel()
+    {
+        $results = Consumption::query()
+            ->whereHas('categoryType.type', fn ($query) => $query->where('name', 'Combustible'))
+            ->selectRaw('MONTH(created_at) as month, AVG(amount) as average')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $min = $results->min('average');
+        $max = $results->max('average');
+
+        return $this->success(
+            'Mes con menor y mayor pérdida de combustible',
+            [
+                'min' => $results->where('average', $min)->pluck('month')->map(
+                    fn ($month) => [
+                        'month' => $month,
+                        'average' => round($min, 2),
+                    ]
+                ),
+                'max' => $results->where('average', $max)->pluck('month')->map(
+                    fn ($month) => [
+                        'month' => $month,
+                        'average' => round($max, 2),
+                    ]
+                ),
+            ]
+        );
+    }
 }
