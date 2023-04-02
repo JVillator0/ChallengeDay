@@ -1,23 +1,89 @@
 {
 	"info": {
-		"_postman_id": "e5bbe22b-f9f4-4b58-aaba-59a0bd11bc08",
+		"_postman_id": "9f4cec9b-8305-4f85-a18a-3f838dfac551",
 		"name": "Challenge-Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "26460101"
 	},
 	"item": [
 		{
-			"name": "Categorys",
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"TOKEN\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
 			"item": [
 				{
 					"name": "Get all",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/categories",
+							"raw": "{{BASE_URL}}/api/categories",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -30,7 +96,18 @@
 				{
 					"name": "Store",
 					"request": {
-						"method": "POST",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -42,9 +119,9 @@
 							"raw": "{\n    \"name\": \"Category Name\",\n    \"description\": \"Category Description\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/categories",
+							"raw": "{{BASE_URL}}/api/categories",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -57,12 +134,23 @@
 				{
 					"name": "Show",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/categories/6",
+							"raw": "{{BASE_URL}}/api/categories/6",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -76,7 +164,18 @@
 				{
 					"name": "Update",
 					"request": {
-						"method": "PUT",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -88,9 +187,9 @@
 							"raw": "{\n    \"name\": \"New Category Name\",\n    \"description\": \"New Category Description\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/categories/6",
+							"raw": "{{BASE_URL}}/api/categories/6",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -104,12 +203,23 @@
 				{
 					"name": "Delete",
 					"request": {
-						"method": "DELETE",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/categories/6",
+							"raw": "{{BASE_URL}}/api/categories/6",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -128,12 +238,23 @@
 				{
 					"name": "Get all",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/types",
+							"raw": "{{BASE_URL}}/api/types",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -146,7 +267,18 @@
 				{
 					"name": "Store",
 					"request": {
-						"method": "POST",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -158,9 +290,9 @@
 							"raw": "{\n    \"name\": \"Type Name\",\n    \"description\": \"Type Description\",\n    \"unit\": \"Galones\",\n    \"unit_abbreviation\": \"Gal\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/types",
+							"raw": "{{BASE_URL}}/api/types",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -173,12 +305,23 @@
 				{
 					"name": "Show",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/types/1",
+							"raw": "{{BASE_URL}}/api/types/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -192,7 +335,18 @@
 				{
 					"name": "Update",
 					"request": {
-						"method": "PUT",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -204,9 +358,9 @@
 							"raw": "{\n    \"name\": \"New Type Name\",\n    \"description\": \"New Type Description\",\n    \"unit\": \"Galones\",\n    \"unit_abbreviation\": \"Gal\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/types/1",
+							"raw": "{{BASE_URL}}/api/types/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -220,12 +374,23 @@
 				{
 					"name": "Delete",
 					"request": {
-						"method": "DELETE",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/types/1",
+							"raw": "{{BASE_URL}}/api/types/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -244,12 +409,23 @@
 				{
 					"name": "Get all",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/category-types?type_id=1",
+							"raw": "{{BASE_URL}}/api/category-types?type_id=1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -273,7 +449,18 @@
 				{
 					"name": "Store",
 					"request": {
-						"method": "POST",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -285,9 +472,9 @@
 							"raw": "{\n    \"category_id\": 1,\n    \"type_id\": 1\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/category-types",
+							"raw": "{{BASE_URL}}/api/category-types",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -300,12 +487,23 @@
 				{
 					"name": "Show",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/category-types/1",
+							"raw": "{{BASE_URL}}/api/category-types/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -319,7 +517,18 @@
 				{
 					"name": "Update",
 					"request": {
-						"method": "PUT",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -331,9 +540,9 @@
 							"raw": "{\n    \"category_id\": 2,\n    \"type_id\": 2\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/category-types/1",
+							"raw": "{{BASE_URL}}/api/category-types/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -347,12 +556,23 @@
 				{
 					"name": "Delete",
 					"request": {
-						"method": "DELETE",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/category-types/1",
+							"raw": "{{BASE_URL}}/api/category-types/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -371,12 +591,23 @@
 				{
 					"name": "Get all",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/emissions-types",
+							"raw": "{{BASE_URL}}/api/emissions-types",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -389,7 +620,18 @@
 				{
 					"name": "Store",
 					"request": {
-						"method": "POST",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -401,9 +643,9 @@
 							"raw": "{\n    \"name\": \"Emission Type Name\",\n    \"description\": \"Emission Type Description\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/emissions-types",
+							"raw": "{{BASE_URL}}/api/emissions-types",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -416,12 +658,23 @@
 				{
 					"name": "Show",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/emissions-types/1",
+							"raw": "{{BASE_URL}}/api/emissions-types/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -435,7 +688,18 @@
 				{
 					"name": "Update",
 					"request": {
-						"method": "PUT",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -447,9 +711,9 @@
 							"raw": "{\n    \"name\": \"New Emission Type Name\",\n    \"description\": \"New Emission Type Description\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/emissions-types/1",
+							"raw": "{{BASE_URL}}/api/emissions-types/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -463,12 +727,23 @@
 				{
 					"name": "Delete",
 					"request": {
-						"method": "DELETE",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/emissions-types/1",
+							"raw": "{{BASE_URL}}/api/emissions-types/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -487,12 +762,23 @@
 				{
 					"name": "Get all",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/places",
+							"raw": "{{BASE_URL}}/api/places",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -505,7 +791,18 @@
 				{
 					"name": "Store",
 					"request": {
-						"method": "POST",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -517,9 +814,9 @@
 							"raw": "{\n    \"name\": \"Place Name\",\n    \"address\": \"Place Address\",\n    \"description\": \"Place Description\",\n    \"location_url\": \"https://www.google.com/maps/place/Latitude,Longitude\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/places",
+							"raw": "{{BASE_URL}}/api/places",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -532,12 +829,23 @@
 				{
 					"name": "Show",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/places/1",
+							"raw": "{{BASE_URL}}/api/places/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -551,7 +859,18 @@
 				{
 					"name": "Update",
 					"request": {
-						"method": "PUT",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -563,9 +882,9 @@
 							"raw": "{\n    \"name\": \"New Place Name\",\n    \"address\": \"New Place Address\",\n    \"description\": \"New Place Description\",\n    \"location_url\": \"https://www.google.com/maps/place/NewLatitude,NewLongitude\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/places/1",
+							"raw": "{{BASE_URL}}/api/places/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -579,12 +898,23 @@
 				{
 					"name": "Delete",
 					"request": {
-						"method": "DELETE",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/places/1",
+							"raw": "{{BASE_URL}}/api/places/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -603,12 +933,23 @@
 				{
 					"name": "Get all",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/consumptions",
+							"raw": "{{BASE_URL}}/api/consumptions",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -621,7 +962,18 @@
 				{
 					"name": "Store",
 					"request": {
-						"method": "POST",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -633,9 +985,9 @@
 							"raw": "{\n    \"amount\": 10.5,\n    \"category_type_id\": 1,\n    \"emission_type_id\": 2,\n    \"place_id\": 3\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/consumptions",
+							"raw": "{{BASE_URL}}/api/consumptions",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -648,12 +1000,23 @@
 				{
 					"name": "Show",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/consumptions/1",
+							"raw": "{{BASE_URL}}/api/consumptions/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -667,7 +1030,18 @@
 				{
 					"name": "Update",
 					"request": {
-						"method": "PUT",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -679,9 +1053,9 @@
 							"raw": "{\n    \"amount\": 12.3,\n    \"category_type_id\": 4,\n    \"emission_type_id\": 5,\n    \"place_id\": 6\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/consumptions/1",
+							"raw": "{{BASE_URL}}/api/consumptions/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -695,12 +1069,23 @@
 				{
 					"name": "Delete",
 					"request": {
-						"method": "DELETE",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/consumptions/1",
+							"raw": "{{BASE_URL}}/api/consumptions/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -719,12 +1104,23 @@
 				{
 					"name": "Get all ",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/departments",
+							"raw": "{{BASE_URL}}/api/departments",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -737,7 +1133,18 @@
 				{
 					"name": "Store",
 					"request": {
-						"method": "POST",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -749,9 +1156,9 @@
 							"raw": "{\n    \"name\": \"Departamento de Ventas\",\n    \"description\": \"Encargado de la venta de productos y servicios\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/departments",
+							"raw": "{{BASE_URL}}/api/departments",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -764,12 +1171,23 @@
 				{
 					"name": "Show",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/departments/1",
+							"raw": "{{BASE_URL}}/api/departments/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -783,7 +1201,18 @@
 				{
 					"name": "Update",
 					"request": {
-						"method": "PUT",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -795,9 +1224,9 @@
 							"raw": "{\n    \"name\": \"Departamento de Ventas\",\n    \"description\": \"Encargado de la venta de productos y servicios\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/departments/1",
+							"raw": "{{BASE_URL}}/api/departments/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -811,12 +1240,23 @@
 				{
 					"name": "Delete",
 					"request": {
-						"method": "DELETE",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/departments/1",
+							"raw": "{{BASE_URL}}/api/departments/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -835,12 +1275,23 @@
 				{
 					"name": "Get all ",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/trips",
+							"raw": "{{BASE_URL}}/api/trips",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -853,7 +1304,18 @@
 				{
 					"name": "Store",
 					"request": {
-						"method": "POST",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -865,9 +1327,9 @@
 							"raw": "{\n    \"department_id\": 1,\n    \"emission_type_id\": 2,\n    \"trip_date\": \"2023-04-01\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/trips",
+							"raw": "{{BASE_URL}}/api/trips",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -880,12 +1342,23 @@
 				{
 					"name": "Show",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/trips/1",
+							"raw": "{{BASE_URL}}/api/trips/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -899,7 +1372,18 @@
 				{
 					"name": "Update",
 					"request": {
-						"method": "PUT",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -911,9 +1395,9 @@
 							"raw": "{\n    \"department_id\": 1,\n    \"emission_type_id\": 2,\n    \"trip_date\": \"2023-04-01\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/trips/1",
+							"raw": "{{BASE_URL}}/api/trips/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -927,12 +1411,23 @@
 				{
 					"name": "Delete",
 					"request": {
-						"method": "DELETE",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/trips/1",
+							"raw": "{{BASE_URL}}/api/trips/1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -951,12 +1446,23 @@
 				{
 					"name": "Anual avg fuel by category",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/anual-average-fuel-consumption-by-category",
+							"raw": "{{BASE_URL}}/api/metrics/anual-average-fuel-consumption-by-category",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -970,12 +1476,23 @@
 				{
 					"name": "Monthly avg fuel consumption",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/monthly-average-fuel-consumption",
+							"raw": "{{BASE_URL}}/api/metrics/monthly-average-fuel-consumption",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -989,12 +1506,23 @@
 				{
 					"name": "Most impact segment",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/most-impact-segment",
+							"raw": "{{BASE_URL}}/api/metrics/most-impact-segment",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -1008,12 +1536,23 @@
 				{
 					"name": "Monthly avg electricity consumption",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/monthly-average-electricity-consumption?place_id=1",
+							"raw": "{{BASE_URL}}/api/metrics/monthly-average-electricity-consumption?place_id=1",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -1033,12 +1572,23 @@
 				{
 					"name": "Monthly Comparison Electricity Fuel Consumption",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/monthly-comparison-electricity-fuel-consumption",
+							"raw": "{{BASE_URL}}/api/metrics/monthly-comparison-electricity-fuel-consumption",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -1052,12 +1602,23 @@
 				{
 					"name": "Monthly average products consumption by type",
 					"request": {
-						"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                        "method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/monthly-average-products-consumption-by-type?type_ids=[1,2]",
+							"raw": "{{BASE_URL}}/api/metrics/monthly-average-products-consumption-by-type",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -1067,22 +1628,33 @@
 							"query": [
 								{
 									"key": "type_ids",
-									"value": "[1,2]"
+									"value": "[1,2]",
+									"disabled": true
 								}
 							]
 						}
 					},
 					"response": []
 				},
-				{
+                {
 					"name": "Monthly average trips by department",
 					"request": {
+                        "auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/monthly-average-trips-by-department",
+							"raw": "{{BASE_URL}}/api/metrics/monthly-average-trips-by-department",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -1093,15 +1665,25 @@
 					},
 					"response": []
 				},
-				{
+                {
 					"name": "Monthly consumption",
 					"request": {
+                        "auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/monthly-consumption?type_id=3",
+							"raw": "{{BASE_URL}}/api/metrics/monthly-consumption?type_id=3",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -1122,12 +1704,22 @@
 				{
 					"name": "Get month with minimum refrigerant loss",
 					"request": {
+                        "auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/get-month-with-minimum-refrigerant-loss",
+							"raw": "{{BASE_URL}}/api/metrics/get-month-with-minimum-refrigerant-loss",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -1141,12 +1733,22 @@
 				{
 					"name": "Get max min months used fuel",
 					"request": {
+                        "auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/get-max-min-months-used-fuel",
+							"raw": "{{BASE_URL}}/api/metrics/get-max-min-months-used-fuel",
 							"host": [
-								"{{base_url}}"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -1162,12 +1764,23 @@
 		{
 			"name": "Status",
 			"request": {
-				"method": "GET",
+
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+                "method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/api/status",
+					"raw": "{{BASE_URL}}/api/status",
 					"host": [
-						"{{base_url}}"
+						"{{BASE_URL}}"
 					],
 					"path": [
 						"api",
@@ -1200,8 +1813,13 @@
 	],
 	"variable": [
 		{
-			"key": "base_url",
+			"key": "BASE_URL",
 			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN",
+			"value": "8|LaqjxhemTcorExQlZtWuHjy0ePEm65mcenNhmggS",
 			"type": "string"
 		}
 	]
