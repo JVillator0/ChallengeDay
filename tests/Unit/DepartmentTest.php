@@ -86,6 +86,6 @@ class DepartmentTest extends TestCase
         $response = $this->delete('/api/departments/'.$department->id);
 
         $response->assertStatus(204);
-        $this->assertDatabaseMissing('departments', ['id' => $department->id]);
+        $this->assertDatabaseMissing('departments', ['id' => $department->id, 'deleted_at' => null]);
     }
 }

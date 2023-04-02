@@ -111,6 +111,6 @@ class TripTest extends TestCase
         $response = $this->delete('/api/trips/'.$trip->id);
 
         $response->assertStatus(204);
-        $this->assertDatabaseMissing('trips', ['id' => $trip->id]);
+        $this->assertDatabaseMissing('trips', ['id' => $trip->id, 'deleted_at' => null]);
     }
 }

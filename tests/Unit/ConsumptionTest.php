@@ -136,6 +136,6 @@ class ConsumptionTest extends TestCase
         $response = $this->delete('/api/consumptions/'.$consumption->id);
 
         $response->assertStatus(204);
-        $this->assertDatabaseMissing('consumptions', ['id' => $consumption->id]);
+        $this->assertDatabaseMissing('consumptions', ['id' => $consumption->id, 'deleted_at' => null]);
     }
 }

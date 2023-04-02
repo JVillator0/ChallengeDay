@@ -90,6 +90,6 @@ class PlaceTest extends TestCase
         $response = $this->delete('/api/places/'.$place->id);
 
         $response->assertStatus(204);
-        $this->assertDatabaseMissing('places', ['id' => $place->id]);
+        $this->assertDatabaseMissing('places', ['id' => $place->id, 'deleted_at' => null]);
     }
 }

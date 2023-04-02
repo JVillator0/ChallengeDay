@@ -90,6 +90,6 @@ class TypeTest extends TestCase
         $response = $this->delete('/api/types/'.$type->id);
 
         $response->assertStatus(204);
-        $this->assertDatabaseMissing('types', ['id' => $type->id]);
+        $this->assertDatabaseMissing('types', ['id' => $type->id, 'deleted_at' => null]);
     }
 }

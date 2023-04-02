@@ -86,6 +86,6 @@ class EmissionTypeTest extends TestCase
         $response = $this->delete('/api/emissions-types/'.$emissiontype->id);
 
         $response->assertStatus(204);
-        $this->assertDatabaseMissing('emission_types', ['id' => $emissiontype->id]);
+        $this->assertDatabaseMissing('emission_types', ['id' => $emissiontype->id, 'deleted_at' => null]);
     }
 }

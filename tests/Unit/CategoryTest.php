@@ -86,6 +86,6 @@ class CategoryTest extends TestCase
         $response = $this->delete('/api/categories/'.$category->id);
 
         $response->assertStatus(204);
-        $this->assertDatabaseMissing('categories', ['id' => $category->id]);
+        $this->assertDatabaseMissing('categories', ['id' => $category->id, 'deleted_at' => null]);
     }
 }
