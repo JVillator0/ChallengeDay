@@ -10,7 +10,7 @@ class ConsumptionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'amount' => $this->amount,
+            'amount' => round($this->amount, 2),
             'category_type' => new CategoryTypeResource($this->categoryType),
             'emission_type' => new EmissionTypeResource($this->emissionType),
             'place' => new PlaceResource($this->place),

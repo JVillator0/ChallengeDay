@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Consumption extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'amount',
         'category_type_id',

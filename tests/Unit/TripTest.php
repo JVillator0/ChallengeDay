@@ -2,11 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Models\Category;
 use App\Models\Department;
 use App\Models\EmissionType;
 use App\Models\Trip;
-use App\Models\Type;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;

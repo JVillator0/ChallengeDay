@@ -10,10 +10,13 @@ use App\Models\CategoryType;
 use App\Models\Consumption;
 use App\Models\Place;
 use App\Models\Type;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
 
 class ConsumptionController extends Controller
 {
+    use HasFactory;
+
     public function index()
     {
         return $this->success(
@@ -30,7 +33,8 @@ class ConsumptionController extends Controller
 
         return $this->success(
             'Consumo creado',
-            new ConsumptionResource($consumption)
+            new ConsumptionResource($consumption),
+            201
         );
     }
 
