@@ -24,7 +24,8 @@ class DeparmentController extends Controller
 
         return $this->success(
             'Departamento creado correctamente',
-            new DeparmentResource($deparment)
+            new DeparmentResource($deparment),
+            201
         );
     }
 
@@ -52,7 +53,8 @@ class DeparmentController extends Controller
 
         return $this->success(
             'Departamento eliminado correctamente',
-            new DeparmentResource($deparment)
+            null,
+            204
         );
     }
 }

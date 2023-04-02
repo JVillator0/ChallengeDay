@@ -23,7 +23,8 @@ class CategoryController extends Controller
 
         return $this->success(
             'Categoria de consumo creada',
-            new CategoryResource($category)
+            new CategoryResource($category),
+            201
         );
     }
 
@@ -51,6 +52,8 @@ class CategoryController extends Controller
 
         return $this->success(
             'Categoria de consumo eliminada',
+            null,
+            204
         );
     }
 }

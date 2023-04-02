@@ -23,7 +23,8 @@ class PlaceController extends Controller
 
         return $this->success(
             'Propiedad creada',
-            new PlaceResource($place)
+            new PlaceResource($place),
+            201
         );
     }
 
@@ -51,6 +52,8 @@ class PlaceController extends Controller
 
         return $this->success(
             'Propiedad eliminada',
+            null,
+            204
         );
     }
 }

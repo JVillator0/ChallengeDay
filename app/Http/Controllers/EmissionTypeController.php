@@ -23,34 +23,37 @@ class EmissionTypeController extends Controller
 
         return $this->success(
             'Tipo de emision creado',
-            new EmissionTypeResource($emissionType)
+            new EmissionTypeResource($emissionType),
+            201
         );
     }
 
-    public function show(EmissionType $emissionType)
+    public function show(EmissionType $emissions_type)
     {
         return $this->success(
             'Categoria de consumo',
-            new EmissionTypeResource($emissionType)
+            new EmissionTypeResource($emissions_type)
         );
     }
 
-    public function update(UpdateRequest $request, EmissionType $emissionType)
+    public function update(UpdateRequest $request, EmissionType $emissions_type)
     {
-        $emissionType->update($request->all());
+        $emissions_type->update($request->all());
 
         return $this->success(
             'Tipo de emision actualizado',
-            new EmissionTypeResource($emissionType)
+            new EmissionTypeResource($emissions_type)
         );
     }
 
-    public function destroy(EmissionType $emissionType)
+    public function destroy(EmissionType $emissions_type)
     {
-        $emissionType->delete();
+        $emissions_type->delete();
 
         return $this->success(
             'Tipo de emision eliminado',
+            null,
+            204
         );
     }
 }

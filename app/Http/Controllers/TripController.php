@@ -25,7 +25,8 @@ class TripController extends Controller
 
         return $this->success(
             'Viaje creado correctamente',
-            new TripResource($trip)
+            new TripResource($trip),
+            201
         );
     }
 
@@ -53,7 +54,8 @@ class TripController extends Controller
 
         return $this->success(
             'Viaje eliminado correctamente',
-            new TripResource($trip)
+            null,
+            204
         );
     }
 

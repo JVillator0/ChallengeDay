@@ -34,34 +34,37 @@ class CategoryTypeController extends Controller
 
         return $this->success(
             'Categoria de consumo creada',
-            new CategoryTypeResource($type)
+            new CategoryTypeResource($type),
+            201
         );
     }
 
-    public function show(CategoryType $categoryType)
+    public function show(CategoryType $category_type)
     {
         return $this->success(
             'Categoria de consumo',
-            new CategoryTypeResource($categoryType)
+            new CategoryTypeResource($category_type)
         );
     }
 
-    public function update(UpdateRequest $request, CategoryType $categoryType)
+    public function update(UpdateRequest $request, CategoryType $category_type)
     {
-        $categoryType->update($request->all());
+        $category_type->update($request->all());
 
         return $this->success(
             'Categoria de consumo actualizada',
-            new CategoryTypeResource($categoryType)
+            new CategoryTypeResource($category_type)
         );
     }
 
-    public function destroy(CategoryType $categoryType)
+    public function destroy(CategoryType $category_type)
     {
-        $categoryType->delete();
+        $category_type->delete();
 
         return $this->success(
             'Categoria de consumo eliminada',
+            null,
+            204
         );
     }
 

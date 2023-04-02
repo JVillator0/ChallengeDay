@@ -58,6 +58,8 @@ class ConsumptionController extends Controller
 
         return $this->success(
             'Consumo eliminado',
+            null,
+            204
         );
     }
 

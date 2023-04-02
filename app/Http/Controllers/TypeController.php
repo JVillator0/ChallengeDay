@@ -23,7 +23,8 @@ class TypeController extends Controller
 
         return $this->success(
             'Tipo de consumo creado',
-            new TypeResource($type)
+            new TypeResource($type),
+            201
         );
     }
 
@@ -51,6 +52,8 @@ class TypeController extends Controller
 
         return $this->success(
             'Tipo de consumo eliminado',
+            null,
+            204
         );
     }
 }
