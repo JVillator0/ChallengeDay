@@ -10,7 +10,7 @@ class Trip extends Model
     use HasFactory;
 
     protected $fillable = [
-        'deparment_id',
+        'department_id',
         'emission_type_id',
         'trip_date',
     ];
@@ -19,9 +19,9 @@ class Trip extends Model
         'trip_date' => 'datetime',
     ];
 
-    public function deparment()
+    public function department()
     {
-        return $this->belongsTo(Deparment::class);
+        return $this->belongsTo(Department::class);
     }
 
     public function emissionType()

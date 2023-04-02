@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Category;
-use App\Models\Deparment;
+use App\Models\Department;
 use App\Models\EmissionType;
 use App\Models\Trip;
 use App\Models\Type;
@@ -29,11 +29,11 @@ class TripTest extends TestCase
     /** @test */
     public function can_create_trip()
     {
-        $deparment = Deparment::factory()->create();
+        $department = Department::factory()->create();
         $emissionType = EmissionType::factory()->create();
 
         $tripData = [
-            'deparment_id' => $deparment->id,
+            'department_id' => $department->id,
             'emission_type_id' => $emissionType->id,
             'trip_date' => '2021-01-01',
         ];
@@ -53,33 +53,22 @@ class TripTest extends TestCase
 
         $response->assertStatus(200);
 
-        // $response->assertJsonFragment([
-        //     "status" => "success",
-        //     "message" => "Viaje listado correctamente",
-        //     'data' => [
-        //         'id' => $trip->id,
-        //         'department' => [
-        //             'id' => $trip->deparment->id,
-        //             'name' => $trip->deparment->name,
-        //             'description' => $trip->deparment->description,
-        //         ],
-        //         'emission_type' => [
-        //             'id' => $trip->emissionType->id,
-        //             'name' => $trip->emissionType->name,
-        //             'description' => $trip->emissionType->description,
-        //         ],
-        //         'trip_date' => $trip->trip_date->format('Y-m-d'),
-        //     ],
-        // ]);
-
-        $response->assertJsonStructure([
-            'status',
-            'message',
+        $response->assertJsonFragment([
+            "status" => "success",
+            "message" => "Viaje listado correctamente",
             'data' => [
-                'id',
-                'department',
-                'emission_type',
-                'trip_date',
+                'id' => $trip->id,
+                'department' => [
+                    'id' => $trip->department->id,
+                    'name' => $trip->department->name,
+                    'description' => $trip->department->description,
+                ],
+                'emission_type' => [
+                    'id' => $trip->emissionType->id,
+                    'name' => $trip->emissionType->name,
+                    'description' => $trip->emissionType->description,
+                ],
+                'trip_date' => $trip->trip_date->format('Y-m-d'),
             ],
         ]);
     }
@@ -89,11 +78,11 @@ class TripTest extends TestCase
     {
         $trip = Trip::factory()->create();
 
-        $deparment = Deparment::factory()->create();
+        $department = Department::factory()->create();
         $emissionType = EmissionType::factory()->create();
 
         $tripData = [
-            'deparment_id' => $deparment->id,
+            'department_id' => $department->id,
             'emission_type_id' => $emissionType->id,
             'trip_date' => '2021-01-01',
         ];

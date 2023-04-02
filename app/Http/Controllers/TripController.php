@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Trip\StoreRequest;
 use App\Http\Requests\Trip\UpdateRequest;
 use App\Http\Resources\TripResource;
-use App\Models\Deparment;
+use App\Models\Department;
 use App\Models\Trip;
 use Illuminate\Http\Request;
 
@@ -59,18 +59,18 @@ class TripController extends Controller
         );
     }
 
-    public function monthlyAverageTripsByDeparment()
+    public function monthlyAverageTripsByDepartment()
     {
-        $trips = Trip::selectRaw('MONTH(trips.trip_date) as month, deparments.name as deparment, COUNT(trips.id) as trips')
-            ->join('deparments', 'deparments.id', '=', 'trips.deparment_id')
-            ->groupBy('month', 'deparment')
+        $trips = Trip::selectRaw('MONTH(trips.trip_date) as month, departments.name as department, COUNT(trips.id) as trips')
+            ->join('departments', 'departments.id', '=', 'trips.department_id')
+            ->groupBy('month', 'department')
             ->get();
 
-        $trips = $trips->groupBy('deparment')->values();
+        $trips = $trips->groupBy('department')->values();
 
         $result = $trips->map(function ($item, $key) {
             return [
-                'deparment' => $item[0]->deparment,
+                'department' => $item[0]->department,
                 'trips' => $item->sum('trips') / $item->count()
             ];
         });

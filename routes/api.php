@@ -3,7 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryTypeController;
 use App\Http\Controllers\ConsumptionController;
-use App\Http\Controllers\DeparmentController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmissionTypeController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\TripController;
@@ -21,7 +21,7 @@ Route::apiResource('types', TypeController::class);
 Route::apiResource('category-types', CategoryTypeController::class);
 Route::apiResource('emissions-types', EmissionTypeController::class);
 Route::apiResource('places', PlaceController::class);
-Route::apiResource('deparments', DeparmentController::class);
+Route::apiResource('departments', DepartmentController::class);
 Route::apiResource('trips', TripController::class);
 Route::apiResource('consumptions', ConsumptionController::class);
 
@@ -56,9 +56,9 @@ Route::prefix('/metrics')->group(function () {
         'monthlyAverageProductsConsumptionByType'
     ]);
 
-    Route::get('/monthly-average-trips-by-deparment', [
+    Route::get('/monthly-average-trips-by-department', [
         TripController::class,
-        'monthlyAverageTripsByDeparment'
+        'monthlyAverageTripsByDepartment'
     ]);
 
     Route::get('/monthly-consumption', [

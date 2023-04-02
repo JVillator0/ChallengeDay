@@ -714,7 +714,7 @@
 			]
 		},
 		{
-			"name": "Deparments",
+			"name": "Departments",
 			"item": [
 				{
 					"name": "Get all ",
@@ -722,13 +722,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/deparments",
+							"raw": "{{base_url}}/api/departments",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"deparments"
+								"departments"
 							]
 						}
 					},
@@ -749,13 +749,13 @@
 							"raw": "{\n    \"name\": \"Departamento de Ventas\",\n    \"description\": \"Encargado de la venta de productos y servicios\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/deparments",
+							"raw": "{{base_url}}/api/departments",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"deparments"
+								"departments"
 							]
 						}
 					},
@@ -767,13 +767,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/deparments/1",
+							"raw": "{{base_url}}/api/departments/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"deparments",
+								"departments",
 								"1"
 							]
 						}
@@ -795,13 +795,13 @@
 							"raw": "{\n    \"name\": \"Departamento de Ventas\",\n    \"description\": \"Encargado de la venta de productos y servicios\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/deparments/1",
+							"raw": "{{base_url}}/api/departments/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"deparments",
+								"departments",
 								"1"
 							]
 						}
@@ -814,13 +814,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/deparments/1",
+							"raw": "{{base_url}}/api/departments/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"deparments",
+								"departments",
 								"1"
 							]
 						}
@@ -862,7 +862,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"deparment_id\": 1,\n    \"emission_type_id\": 2,\n    \"trip_date\": \"2023-04-01\"\n}"
+							"raw": "{\n    \"department_id\": 1,\n    \"emission_type_id\": 2,\n    \"trip_date\": \"2023-04-01\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/trips",
@@ -908,7 +908,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"deparment_id\": 1,\n    \"emission_type_id\": 2,\n    \"trip_date\": \"2023-04-01\"\n}"
+							"raw": "{\n    \"department_id\": 1,\n    \"emission_type_id\": 2,\n    \"trip_date\": \"2023-04-01\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/trips/1",

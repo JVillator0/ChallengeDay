@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             CategoryTypeSeeder::class,
             EmissionTypeSeeder::class,
             PlaceSeeder::class,
-            DeparmentSeeder::class,
+            DepartmentSeeder::class,
             TripSeeder::class,
             ConsumptionSeeder::class,
         ]);

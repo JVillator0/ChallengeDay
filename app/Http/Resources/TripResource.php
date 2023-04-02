@@ -10,7 +10,7 @@ class TripResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'deparment' => new DeparmentResource($this->deparment),
+            'department' => new DepartmentResource($this->department),
             'emission_type' => new EmissionTypeResource($this->emissionType),
             'trip_date' => $this->trip_date->format('Y-m-d'),
         ];

@@ -2,25 +2,25 @@
 
 namespace Database\Seeders;
 
-use App\Models\Deparment;
+use App\Models\Department;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DeparmentSeeder extends Seeder
+class DepartmentSeeder extends Seeder
 {
     public function run()
     {
-        Deparment::create([
+        Department::create([
             'name' => 'Junta directiva',
             'description' => 'Junta directiva de la empresa, CEO y COO',
         ]);
 
-        Deparment::create([
+        Department::create([
             'name' => 'Administración',
             'description' => 'Departamento de administración',
         ]);
 
-        Deparment::create([
+        Department::create([
             'name' => 'Ventas',
             'description' => 'Departamento de ventas',
         ]);

@@ -14,7 +14,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'deparment_id' => 'required|exists:deparments,id',
+            'department_id' => 'required|exists:departments,id',
             'emission_type_id' => 'required|exists:emission_types,id',
             'trip_date' => 'required|date',
         ];

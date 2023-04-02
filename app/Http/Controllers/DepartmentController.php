@@ -2,54 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Deparment\StoreRequest;
-use App\Http\Requests\Deparment\UpdateRequest;
-use App\Http\Resources\DeparmentResource;
-use App\Models\Deparment;
+use App\Http\Requests\Department\StoreRequest;
+use App\Http\Requests\Department\UpdateRequest;
+use App\Http\Resources\DepartmentResource;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-class DeparmentController extends Controller
+class DepartmentController extends Controller
 {
     public function index()
     {
         return $this->success(
             'Departamentos listados correctamente',
-            DeparmentResource::collection(Deparment::all())
+            DepartmentResource::collection(Department::all())
         );
     }
 
     public function store(StoreRequest $request)
     {
-        $deparment = Deparment::create($request->all());
+        $department = Department::create($request->all());
 
         return $this->success(
             'Departamento creado correctamente',
-            new DeparmentResource($deparment),
+            new DepartmentResource($department),
             201
         );
     }
 
-    public function show(Deparment $deparment)
+    public function show(Department $department)
     {
         return $this->success(
             'Departamento listado correctamente',
-            new DeparmentResource($deparment)
+            new DepartmentResource($department)
         );
     }
 
-    public function update(UpdateRequest $request, Deparment $deparment)
+    public function update(UpdateRequest $request, Department $department)
     {
-        $deparment->update($request->all());
+        $department->update($request->all());
 
         return $this->success(
             'Departamento actualizado correctamente',
-            new DeparmentResource($deparment)
+            new DepartmentResource($department)
         );
     }
 
-    public function destroy(Deparment $deparment)
+    public function destroy(Department $department)
     {
-        $deparment->delete();
+        $department->delete();
 
         return $this->success(
             'Departamento eliminado correctamente',

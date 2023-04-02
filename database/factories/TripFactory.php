@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Deparment;
+use App\Models\Department;
 use App\Models\EmissionType;
 use App\Models\Trip;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,7 +20,7 @@ class TripFactory extends Factory
     public function definition()
     {
         return [
-            'deparment_id' => Deparment::factory(),
+            'department_id' => Department::factory(),
             'emission_type_id' => EmissionType::factory(),
             'trip_date' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
@@ -29,7 +29,7 @@ class TripFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Trip $trip) {
-            $trip->deparment()->associate(Deparment::all()->random());
+            $trip->department()->associate(Department::all()->random());
             $trip->emissionType()->associate(EmissionType::all()->random());
             $trip->save();
         });

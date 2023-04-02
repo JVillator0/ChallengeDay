@@ -14,7 +14,7 @@ return new class () extends Migration {
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('deparment_id')->constrained();
+            $table->foreignId('department_id')->constrained();
             $table->foreignId('emission_type_id')->constrained();
             $table->date('trip_date');
             $table->timestamps();
