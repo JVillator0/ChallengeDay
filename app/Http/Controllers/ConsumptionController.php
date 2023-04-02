@@ -251,4 +251,26 @@ class ConsumptionController extends Controller
             )
         );
     }
+
+    public function getMonthWithMinimumRefrigerantLoss()
+    {
+        $results = Consumption::query()
+            ->whereHas('categoryType.type', fn ($query) => $query->where('name', 'Refrigerante'))
+            ->selectRaw('MONTH(created_at) as month, AVG(amount) as average')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $min = $results->min('average');
+
+        return $this->success(
+            'Mes con menor pérdida de refrigerante',
+            $results->where('average', $min)->pluck('month')->map(
+                fn ($month) => [
+                    'month' => $month,
+                    'average' => round($min, 2),
+                ]
+            )
+        );
+    }
 }

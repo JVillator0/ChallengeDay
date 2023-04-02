@@ -65,4 +65,9 @@ Route::prefix('/metrics')->group(function () {
         ConsumptionController::class,
         'monthlyConsumption'
     ]);
+
+    Route::get('/monthly-minimum-refrigerant-loss', [
+        ConsumptionController::class,
+        'getMonthWithMinimumRefrigerantLoss'
+    ]);
 });
