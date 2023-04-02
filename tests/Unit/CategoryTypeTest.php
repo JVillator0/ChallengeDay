@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Category;
 use App\Models\CategoryType;
 use App\Models\Type;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -12,6 +13,17 @@ use Tests\TestCase;
 class CategoryTypeTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $user = User::factory()->create();
+
+        $token = $user->createToken('TestToken')->plainTextToken;
+
+        $this->withHeader('Authorization', "Bearer $token");
+    }
 
     /** @test */
     public function can_get_all_category_types()

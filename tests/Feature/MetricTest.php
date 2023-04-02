@@ -2,12 +2,24 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class MetricsTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $user = User::factory()->create();
+
+        $token = $user->createToken('TestToken')->plainTextToken;
+
+        $this->withHeader('Authorization', "Bearer $token");
+    }
+
     public function testAnualAverageFuelConsumptionByCategoryEndpoint()
     {
         $response = $this->get('/api/metrics/anual-average-fuel-consumption-by-category');

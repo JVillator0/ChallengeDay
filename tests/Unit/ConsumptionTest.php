@@ -7,6 +7,7 @@ use App\Models\Consumption;
 use App\Models\Department;
 use App\Models\EmissionType;
 use App\Models\Place;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -14,6 +15,17 @@ use Tests\TestCase;
 class ConsumptionTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $user = User::factory()->create();
+
+        $token = $user->createToken('TestToken')->plainTextToken;
+
+        $this->withHeader('Authorization', "Bearer $token");
+    }
 
     /** @test */
     public function can_get_all_consumptions()
