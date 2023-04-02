@@ -61,8 +61,8 @@ class CategoryTypeSeeder extends Seeder
         Type::create([
             'name' => 'Aceite',
             'description' => 'Aceite para motores',
-            'unit' => 'Litros',
-            'unit_abbreviation' => 'l',
+            'unit' => 'Galones',
+            'unit_abbreviation' => 'gal',
         ]);
 
         Type::create([

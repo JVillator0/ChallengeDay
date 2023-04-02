@@ -56,13 +56,13 @@ Route::prefix('/metrics')->group(function () {
         'monthlyAverageProductsConsumptionByType'
     ]);
 
-    /*
-      Comparativa de promedio mensual de viajes equipo de ventas y
-        equipo administrativo
-        (En cantidad de viajes)
-     */
     Route::get('/monthly-average-trips-by-deparment', [
         TripController::class,
         'monthlyAverageTripsByDeparment'
+    ]);
+
+    Route::get('/monthly-consumption', [
+        ConsumptionController::class,
+        'monthlyConsumption'
     ]);
 });

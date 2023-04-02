@@ -219,4 +219,41 @@ class ConsumptionController extends Controller
             )
         );
     }
+
+    public function monthlyConsumption(Request $request)
+    {
+        $results = Type::query()
+            ->when($request->has('type_id'), fn ($query) => $query->where('id', $request->type_id))
+            ->with(['categoryTypes.consumptions' => function ($query) {
+                $query->selectRaw('category_type_id, MONTH(created_at) as month, AVG(amount) as average_consumption')
+                    ->groupBy('category_type_id', 'month')
+                    ->orderBy('month');
+            }])
+            ->get(['id', 'name', 'unit_abbreviation']);
+
+        $result = $results->map(function ($item) {
+            $totalConsumption = $item->categoryTypes->avg(function ($categoryType) {
+                return $categoryType->consumptions->avg('average_consumption') ?? 0;
+            });
+
+            return [
+                'id' => $item->id,
+                'type' => $item->name,
+                'average' => round($totalConsumption, 2),
+                'unit_abbreviation' => $item->unit_abbreviation,
+            ];
+        });
+
+        return $this->success(
+            'Consumo promedio mensual',
+            $result->map(
+                fn ($item) => [
+                    'id' => $item['id'],
+                    'type' => $item['type'],
+                    'average' => $item['average'],
+                    'unit_abbreviation' => $item['unit_abbreviation'],
+                ]
+            )
+        );
+    }
 }
