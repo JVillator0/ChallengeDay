@@ -78,14 +78,10 @@ class ConsumptionController extends Controller
 
         return $this->success(
             'Consumo promedio mensual de combustible',
-            $results->map(
-                fn ($item) =>
-                [
-                    'month' => $item->month,
-                    'average' => round($item->average, 2),
-                    'unit' => $typeAbbr,
-                ]
-            )
+            [
+                'average' => round($results->average('average'), 2),
+                'unit' => $typeAbbr,
+            ]
         );
     }
 
@@ -148,6 +144,39 @@ class ConsumptionController extends Controller
                     'unit' => $typeAbbr,
                 ]
             )
+        );
+    }
+
+    public function monthlyComparisonElectricityFuelConsumption(Request $request)
+    {
+        $results = Consumption::query()
+            ->whereHas('categoryType.type', fn ($query) => $query->where('name', 'Combustible'))
+            ->selectRaw('MONTH(created_at) as month, AVG(amount) as average')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $fuel = $results->average('average');
+
+        $results = Consumption::query()
+            ->whereHas('categoryType.type', fn ($query) => $query->where('name', 'Electricidad'))
+            ->selectRaw('MONTH(created_at) as month, AVG(amount) as average')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $electricity = $results->average('average');
+
+        $total = $fuel + $electricity;
+
+        return $this->success(
+            'Porcentaje de consumo promedio mensual de combustible y electricidad',
+            [
+                'fuel' => round($fuel, 2),
+                'electricity' => round($electricity, 2),
+                'fuel_percentage' => ($total > 0 ? round($fuel / $total * 100, 2) . '%' : '0%'),
+                'electricity_percentage' => ($total > 0 ? round($electricity / $total * 100, 2) . '%' : '0%'),
+            ]
         );
     }
 }
