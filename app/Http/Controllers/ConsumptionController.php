@@ -222,36 +222,31 @@ class ConsumptionController extends Controller
 
     public function monthlyConsumption(Request $request)
     {
-        $results = Type::query()
-            ->when($request->has('type_id'), fn ($query) => $query->where('id', $request->type_id))
-            ->with(['categoryTypes.consumptions' => function ($query) {
+        $results = CategoryType::query()
+            ->when($request->has('type_id'), fn ($query) => $query->where('type_id', $request->type_id))
+            ->whereHas('consumptions')
+            ->with(['consumptions' => function ($query) {
                 $query->selectRaw('category_type_id, MONTH(created_at) as month, AVG(amount) as average_consumption')
                     ->groupBy('category_type_id', 'month')
                     ->orderBy('month');
             }])
-            ->get(['id', 'name', 'unit_abbreviation']);
-
-        $result = $results->map(function ($item) {
-            $totalConsumption = $item->categoryTypes->avg(function ($categoryType) {
-                return $categoryType->consumptions->avg('average_consumption') ?? 0;
-            });
-
-            return [
-                'id' => $item->id,
-                'type' => $item->name,
-                'average' => round($totalConsumption, 2),
-                'unit_abbreviation' => $item->unit_abbreviation,
-            ];
-        });
+            ->with(['type:id,name,unit_abbreviation', 'category:id,name'])
+            ->get();
 
         return $this->success(
-            'Consumo promedio mensual',
-            $result->map(
+            'Consumo mensual',
+            $results->map(
                 fn ($item) => [
-                    'id' => $item['id'],
-                    'type' => $item['type'],
-                    'average' => $item['average'],
-                    'unit_abbreviation' => $item['unit_abbreviation'],
+                    'category' => $item->category->name,
+                    'type' => $item->type->name,
+                    'average' => round($item->consumptions->avg('average_consumption'), 2),
+                    'unit' => $item->type->unit_abbreviation,
+                    'details' => $item->consumptions->map(
+                        fn ($consumption) => [
+                            'month' => $consumption->month,
+                            'average' => round($consumption->average_consumption, 2),
+                        ]
+                    ),
                 ]
             )
         );
