@@ -19,6 +19,7 @@ return new class () extends Migration {
             $table->string('address');
             $table->string('location_url');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

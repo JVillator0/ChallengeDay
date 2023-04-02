@@ -19,6 +19,7 @@ return new class () extends Migration {
             $table->foreignId('emission_type_id')->constrained();
             $table->foreignId('place_id')->constrained();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -18,6 +18,7 @@ return new class () extends Migration {
             $table->foreignId('emission_type_id')->constrained();
             $table->date('trip_date');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

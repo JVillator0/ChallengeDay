@@ -19,6 +19,7 @@ return new class () extends Migration {
             $table->string('unit');
             $table->string('unit_abbreviation');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
