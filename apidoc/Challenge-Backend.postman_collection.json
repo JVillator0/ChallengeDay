@@ -1055,7 +1055,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/metrics/monthly-average-products-consumption-by-type",
+							"raw": "{{base_url}}/api/metrics/monthly-average-products-consumption-by-type?type_ids=[1,2]",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1067,9 +1067,91 @@
 							"query": [
 								{
 									"key": "type_ids",
-									"value": "[1,2]",
-									"disabled": true
+									"value": "[1,2]"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly average trips by department",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/monthly-average-trips-by-department",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"monthly-average-trips-by-department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly consumption",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/monthly-consumption?type_id=3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"monthly-consumption"
+							],
+							"query": [
+								{
+									"key": "type_id",
+									"value": "3",
+									"description": "Aceite"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get month with minimum refrigerant loss",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/get-month-with-minimum-refrigerant-loss",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"get-month-with-minimum-refrigerant-loss"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get max min months used fuel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/metrics/get-max-min-months-used-fuel",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"metrics",
+								"get-max-min-months-used-fuel"
 							]
 						}
 					},
