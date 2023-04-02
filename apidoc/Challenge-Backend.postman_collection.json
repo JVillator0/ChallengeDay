@@ -1570,7 +1570,7 @@
 					"response": []
 				},
 				{
-					"name": "Monthly Comparison Electricity Fuel Consumption",
+					"name": "Monthly comparison electricity fuel consumption",
 					"request": {
 
 						"auth": {
@@ -1639,6 +1639,7 @@
                 {
 					"name": "Monthly average trips by department",
 					"request": {
+
                         "auth": {
 							"type": "bearer",
 							"bearer": [
@@ -1668,6 +1669,7 @@
                 {
 					"name": "Monthly consumption",
 					"request": {
+
                         "auth": {
 							"type": "bearer",
 							"bearer": [
@@ -1704,6 +1706,7 @@
 				{
 					"name": "Get month with minimum refrigerant loss",
 					"request": {
+
                         "auth": {
 							"type": "bearer",
 							"bearer": [
@@ -1733,6 +1736,7 @@
 				{
 					"name": "Get max min months used fuel",
 					"request": {
+
                         "auth": {
 							"type": "bearer",
 							"bearer": [
